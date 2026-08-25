@@ -7,7 +7,8 @@ At the core of this library is the Matrix class, you can initialize an M x N mat
 ### Example use:
 Here we create a MLP with a hidden layer with 64 neurons and train it using stochastic gradient descent.
 
-weights1 = Matrix(np.random.randn(784,64)) #initialize weights
+```python
+weights1 = Matrix(np.random.randn(784,64)) #initialize weights 
 weights2 = Matrix(np.random.randn(64,10))
 
 epochs = 500
@@ -25,3 +26,5 @@ for i in range(epochs):
         print(loss.data)
  
 print(loss.data)
+
+'''
