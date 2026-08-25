@@ -8,23 +8,27 @@ At the core of this library is the Matrix class, you can initialize an M x N mat
 Here we create a MLP with a hidden layer with 64 neurons and train it using stochastic gradient descent.
 
 ```python
-weights1 = Matrix(np.random.randn(784,64)) #initialize weights 
+weights1 = Matrix(np.random.randn(784,64)) #initialize weights,biases
 weights2 = Matrix(np.random.randn(64,10))
+bias = Matrix(np.random.randn(64))
+
 
 epochs = 500
 lr = 0.1
 for i in range(epochs):
-    preactivation = X.matmul(weights1)
+    mul1 = X.matmul(weights1)
+    preactivation = mul1.matsum(bias)
     h1 = preactivation.matrelu()
+
     preactivation2 = h1.matmul(weights2)
     loss, probs = preactivation2.softmax_cross_entropy(y)
+    
     loss.backprop(probs)
     weights1.data -= lr * weights1.grad
-    if i>epochs/2:
-        lr = 0.01
+
     if i%100==0:
         print(loss.data)
- 
+      
 print(loss.data)
 
 '''
