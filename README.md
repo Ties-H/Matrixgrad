@@ -25,6 +25,8 @@ for i in range(epochs):
     
     loss.backprop(probs)
     weights1.data -= lr * weights1.grad
+    weights2.data -= lr* weights2.grad
+    bias.data -= lr * bias.grad
 
     if i%100==0:
         print(loss.data)
